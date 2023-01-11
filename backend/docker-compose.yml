@@ -1,17 +1,28 @@
 services:
+  mongo_db:
+    container_name: db_container
+    image: mongo:latest
+    restart: always
+    ports:
+      - 2712:27017
+    volumes:
+      - mongo_db:/data/db
   api:
-    build: /backend
+    build: /
     container_name: api_c
     ports:
-      - "4000:4000"
-    volumes:
-      - /api:/app
-      - /app/node_modules
-  myblog:
-    build: ./frontend
-    container_name: frontend_c
-    ports:
       - "3000:3000"
-    stdin_open: true
-    tty: true
+    environment:
+      PORT: 3000
+      MONGODB_URI: mongodb://mongo_db:27017
+      BD_NAME: Bank
+      NAME: mongo_db
+    depends_on:
+      - mongo_db
+    volumes:
+      - ./:/usr/src/app
+      - /app/node_modules
+    restart: on-failure
 
+volumes:
+  mongo_db: {}

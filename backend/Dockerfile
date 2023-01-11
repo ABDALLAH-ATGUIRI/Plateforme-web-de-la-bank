@@ -1,12 +1,14 @@
 FROM node:17-alpine
 
+RUN npm install --global nodemon
+
 WORKDIR /app
 
-COPY package.json .
+COPY package*.json /app
 
 RUN npm install
 
-COPY . .
+COPY . . 
 
 EXPOSE 3000
 

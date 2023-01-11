@@ -1,5 +1,5 @@
-import JWT from "jsonwebtoken";
-export default {
+const JWT = require("jsonwebtoken") ;
+module.exports = {
   checkToken: (req, res, next) => {
     let token = req.get("authorization");
     if (token) {

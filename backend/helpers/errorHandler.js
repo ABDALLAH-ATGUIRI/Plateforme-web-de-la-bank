@@ -3,8 +3,9 @@ const messageErr = (err, req, res, next) => {
   err.status = err.status || "error";
   res.status(err.statusCode).json({
     status: err.status,
+    statusCode : err.statusCode,
     message: err.message
   });
 };
 
-export default { messageErr };
+module.exports = { messageErr };

@@ -1,9 +1,9 @@
-import AdminServes from "./admin.service.js";
-import { genSaltSync, hashSync, compareSync } from "bcrypt";
-import jsonwebtoken from "jsonwebtoken";
+const AdminServes = require("./admin.service.js");
+const { genSaltSync, hashSync, compareSync } = require("bcrypt");
+const jsonwebtoken = require("jsonwebtoken");
 const { sign } = jsonwebtoken;
 
-export default {
+module.exports = {
   createAdmin: (req, res) => {
     const body = req.body;
     const salt = genSaltSync(10);

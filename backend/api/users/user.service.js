@@ -1,6 +1,6 @@
-import userModel from "./user.model.js";
+const userModel = require("./user.model.js");
 
-export default {
+module.exports = {
   create: (data) => {
     return userModel.Users.create(data);
   },
@@ -11,6 +11,6 @@ export default {
     return userModel.Users.findById(id);
   },
   getUsers: async () => {
-    return  await userModel.Users.find();
+    return await userModel.Users.find();
   }
 };

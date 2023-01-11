@@ -1,10 +1,10 @@
-import userServes from "./user.service.js";
-import { genSaltSync, hashSync, compareSync } from "bcrypt";
-import jsonwebtoken from "jsonwebtoken";
+const userServes = require("./user.service.js");
+const { genSaltSync, hashSync, compareSync } = require("bcrypt");
+const jsonwebtoken = require("jsonwebtoken");
 const { sign } = jsonwebtoken;
-
-export default {
+module.exports = {
   createUser: (req, res) => {
+    console.log(req);
     const body = req.body;
     const salt = genSaltSync(10);
     userServes.list(body.email).then((user, error) => {

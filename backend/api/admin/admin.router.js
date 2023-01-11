@@ -1,5 +1,5 @@
-import AdminController from "./admin.controller.js";
-import express from "express";
+const AdminController = require("./admin.controller.js");
+const express = require("express");
 // import auth from "../../../middleware/adminTokenMiddlware.js";
 const router = express.Router();
 
@@ -9,4 +9,4 @@ router.post("/login", AdminController.login);
 // router.get("/", auth.checkToken, AdminController.getAllAdmins);
 // router.get("/:id", auth.checkToken, AdminController.getOneAdminByAdminId);
 
-export default { router };
+module.exports = { router };

@@ -1,6 +1,6 @@
-import adminModel from "./admin.model.js";
+const adminModel = require("./admin.model.js") ;
 
-export default {
+module.exports = {
   create: (data) => {
     return adminModel.Admin.create(data);
   },

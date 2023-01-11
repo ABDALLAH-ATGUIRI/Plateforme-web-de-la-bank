@@ -1,24 +1,26 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Container from "@mui/material/Container";
+import React from 'react'
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import Logo from "../../assets/logo/logo_cdm.svg"
-import IconButton from '@mui/material/IconButton';
+import "./Header.css"
+function Header(props) {
+  const pathName = props?.location?.pathname
+  return (
+    <>
+        <Navbar expand="lg" sticky="top" className='header'>
+          <Nav  to="/" className='header_navLink'>
+            <Navbar.Brand className="header_home">
+                <img src={Logo} alt="Logo" />
+            </Navbar.Brand>
+          </Nav>
 
+        </Navbar>
 
-
-function Header() {
-
-
-    return (
-        <>
-            <AppBar position="static" >
-                <Container maxWidth="full" sx={{ bgcolor: "", overflow: "hidden", position: "absolute", zIndex: 100, padding: "3%" }}>
-                            <img src={Logo} alt="logo" />
-                </Container >
-            </AppBar >
-        </>
-    );
+    </>
+  )
 }
 
-export default Header;
+export default Header

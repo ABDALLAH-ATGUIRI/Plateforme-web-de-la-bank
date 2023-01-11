@@ -37,7 +37,7 @@ function Login() {
                             </Grid>
                             <Grid item >
                                 <TextField
-                                    type={values.showPass ? ("email") : ("password")}
+                                    type={values.showPass ? ("text") : ("password")}
                                     fullWidth
                                     label="Enter your password"
                                     placeholder="Password"

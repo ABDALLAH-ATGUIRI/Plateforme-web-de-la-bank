@@ -1,0 +1,45 @@
+.title {
+    position: relative;
+    display: inline-block;
+}
+
+.title .title_text {
+    font-size: 16px;
+    font-weight: 600;
+    position: relative;
+    color: var(--main-color);
+    margin: 0;
+}
+
+.title span {
+    position: absolute;
+    height: 8px;
+    width: 100%;
+    bottom: 0;
+    opacity: 0.4;
+    left: 0;
+    background-color: #f53a79;
+}
+
+.title .description_text {
+    color: darkslategray !important;
+    font: x-small !important;
+    line-height: 22px !important;
+    white-space: pre-line !important;
+    padding-top: 18px;
+}
+
+.title  .packages_title {
+    font-size: 24px;
+    font-weight: 600;
+    position: relative;
+    color: var(--main-color);
+    margin: 0;
+}
+
+.title  .packages_description_title {
+    font-size: 24px;
+    font-weight: 700;
+    position: relative;
+    margin: 0;
+}

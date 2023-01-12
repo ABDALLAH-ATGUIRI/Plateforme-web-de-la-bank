@@ -1,5 +1,5 @@
 :root {
-  --main-color: #058dfe;
+  --main-color: #0071CE;
 }
 
 .container_shadow {
@@ -47,11 +47,9 @@ margin-bottom: 30px !important;
 }
 /* Margins and Paddings */
 .main-content {
-  background-color: rgb(87, 124, 226);
+  background-color: #f9fdfd;
   min-height: 100vh;
-  border-radius: 3%;
-  -moz-border-radius: 3%;
-  -webkit-border-radius: 3%;
+
   margin-bottom: 30px;
 }
 

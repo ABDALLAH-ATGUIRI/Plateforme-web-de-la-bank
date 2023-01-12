@@ -1,0 +1,36 @@
+.hero {
+    position: relative;
+    padding: 12% 30px;
+    background-image: url("../../utils/backgroud/faq.png") !important;
+    z-index: 100;
+    width: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.title {
+    position: relative;
+    display: inline-block;
+}
+
+.title .title_card {
+    font-size: 2.5em;
+    font-style: italic;
+    font-weight: 800;
+    position: relative;
+    color: var(--main-color);
+    margin: 0;
+    padding-top: 34px;
+
+}
+.title .title_card_question {
+    font-size: 2.5em;
+    font-style: italic;
+    font-weight: 800;
+    position: relative;
+    color: var(--primary, #b8d6ec) !important;
+    line-height: .8;
+    margin: 0;
+}

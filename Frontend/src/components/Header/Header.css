@@ -6,9 +6,9 @@
 }
 
 
-.header .header_link {
-    font-weight: 600;
-    color: darkslategray !important;
+.header .nav_logo {
+    width: 300px;
+    height: 100%;
 }
 
 .header .header_link:hover {

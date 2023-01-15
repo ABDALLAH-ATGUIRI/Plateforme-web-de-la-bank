@@ -49,13 +49,13 @@ const theme = createTheme();
 
 export default function Resume() {
     return (
-        <ThemeProvider theme={theme} >
-            <main>
+        <ThemeProvider theme={theme}  >
+            <main className='pb_45'>
                 <Hero />
                 <Container maxWidth="md">
-                    <Grid item key={"card"} sx={{ display: 'flex', alignItems: "center", flexDirection: 'row' }} xs={12} sm={6} md={4}>
+                    <Grid item key={"card"} sx={{ display: 'flex', alignItems: "center", flexDirection: 'row' ,pb:"30px" , gap:6}} xs={12} sm={6} md={4}>
                         <CardContent sx={{ flexGrow: 1 }}>
-                            <Grid className='title pb_30 pt_45'>
+                            <Grid className='title pb_30 pt_45' minWidth="300px">
                                 <Typography gutterBottom variant="h5" component="h2" className='packages_title'>
                                     Nos packages
                                 </Typography>
@@ -66,7 +66,7 @@ export default function Resume() {
                         </CardContent>
                         <CardContent sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}>
                             <Grid className='description_text pb_30 pt_45'>
-                                <Typography gutterBottom variant="p" component="p" className='title_card_question'>
+                                <Typography gutterBottom variant="p" component="p" className='description'>
                                     Vous êtes étudiant ou jeune actif? Vous êtes salarié ou fonctionnaire?
                                     CRÉDIT DU MAROC met à votre disposition une panoplie d'offres pour vous accompagner au quotidien.
                                 </Typography>

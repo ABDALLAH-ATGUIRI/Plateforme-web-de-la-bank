@@ -4,20 +4,21 @@ import Header from './components/Header/Header';
 import { Grid, Container, Paper, TextField, Button, IconButton, InputAdornment } from "@mui/material"
 import Footer from './components/Footer/Footer';
 import Home from "./pages/Home/Home"
+import Auth from './pages/Auth/Auth';
 
 function App() {
   return (
     <>
-      {/* <Login /> */}
       < Container className='' >
-      <Header />
-          <Grid item className='container_page'>
-            <div className='main-content container_shadow'>
-            <Home/>
-              {/* <RouterProvider router={router} /> */}
-            </div>
-          </Grid>
-      <Footer/>
+        <Header />
+        <Grid item className='container_page'>
+          <div className='main-content container_shadow'>
+            {/* <Home/> */}
+            <Auth/>
+            {/* <RouterProvider router={router} /> */}
+          </div>
+        </Grid>
+        <Footer />
       </Container >
     </>
 

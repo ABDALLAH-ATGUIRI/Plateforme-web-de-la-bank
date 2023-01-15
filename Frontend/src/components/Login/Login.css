@@ -1,0 +1,29 @@
+
+
+.card_login .title_card_login {
+    padding-left: 16px;
+    color: rgb(0, 32, 58);
+    font-size: 1.5em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+ .card_login .title_card_login span {
+    color: var(--main-color);
+}
+ .card_login .description_card_login {
+    padding: 0 0 16px 16px;
+    font-size: 1em;
+    color: rgb(110, 113, 145);
+    letter-spacing: 0.25px;
+    margin-top: 4px;
+    width: 90%;
+}
+
+.card_login::after{
+    position: absolute;
+    content: "";
+    inset: -16px 16px 16px -16px;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 16px;
+    z-index: -1;
+}

@@ -36,7 +36,7 @@ function Hero() {
             <Box
                 sx={{
                     bgcolor: 'background.paper',
-                    pt: 24,
+                    pt: 16,
                     pb: 6,
                 }}
 
@@ -45,7 +45,8 @@ function Hero() {
                 <Container maxWidth="xl">
                     <Grid item key={"card"} xs={12} sm={6} md={4}>
                         <Card
-                            sx={{ pt:"30px", display: 'flex', flexDirection: 'row' }}
+                            sx={{display: 'flex', flexDirection: 'row' }}
+                            className="card"
                         >
                             <CardContent sx={{ flexGrow: 1 }}>
                                 <Grid className='title pb_30 pt_45'>
@@ -60,15 +61,14 @@ function Hero() {
                             <CardContent sx={{ flexGrow: 1 , display:"flex" , justifyContent:"flex-end" }}>
                                 {cards.map((card) => (
                                     <Grid item width="160px" key={card} xs={12} sm={6} md={4}>
-                                        <Card
-                                            sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                                        >
+                        
                                             <CardMedia
                                                 component="img"
                                                 sx={{
                                                     // 16:9
                                                     width: "80px",
                                                     alignSelf:"center",
+                                                    mx:'auto'
                         
                                                 }}
                                                 image={card.image}
@@ -89,7 +89,6 @@ function Hero() {
                                             <CardActions justifyContent="center" >
                                                 <Button size="small">{card.link}</Button>
                                             </CardActions>
-                                        </Card>
                                     </Grid>
                                 ))}
                             </CardContent>

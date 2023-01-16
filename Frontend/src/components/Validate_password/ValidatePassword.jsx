@@ -91,7 +91,7 @@ function ValidatePassword({ info, setUserInfo }) {
     })
   }
 
-  useEffect(() => { setUserInfo(values); console.log(values) }, [values])
+  useEffect(() => { setUserInfo(values) }, [values])
 
   return (
     <>
@@ -131,8 +131,6 @@ function ValidatePassword({ info, setUserInfo }) {
                   ...values,
                   password: value
                 })
-
-                console.log(value)
 
                 setInput(prev => ({
                   ...prev,

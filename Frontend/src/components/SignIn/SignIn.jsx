@@ -28,6 +28,7 @@ function SignIn() {
     };
 
     const createAccount = async (data) => {
+        console.log(data)
         try {
             const response = await axios.post(
                 SIGN_IN_URL,

@@ -10,6 +10,8 @@ const userRouter = require("./api/users/user.router.js");
 const adminRouter = require("./api/admin/admin.router.js");
 const AppError = require("./helpers/appError.js");
 const errorHandler = require("./helpers/errorHandler.js");
+const accountRouter = require("./api/account/account.router")
+
 
 const app = express();
 app.use(express.json());
@@ -20,6 +22,8 @@ const PORT = process.env.PORT || 3000;
 
 app.use("/api/users", userRouter.router);
 app.use("/api/admin", adminRouter.router);
+app.use("/api/account", accountRouter.router);
+
 
 app.get("/", (req, res) => {
   res.json({

@@ -1,11 +1,14 @@
 import './App.css';
-import Login from './components/Login/Login';
 import Header from './components/Header/Header';
-import { Grid, Container, Paper, TextField, Button, IconButton, InputAdornment } from "@mui/material"
+import { Grid, Container } from "@mui/material"
 import Footer from './components/Footer/Footer';
 import Home from "./pages/Home/Home"
-import Auth from './pages/Auth/Auth';
+import Login from './pages/Auth/Login';
+import Register from './pages/Auth/Register'
 import Client from './pages/Client/Client';
+import { Route, Routes } from "react-router";
+import Layout from './components/Layout';
+import RequireAuth from './components/RequireAuth';
 
 function App() {
   return (
@@ -14,11 +17,26 @@ function App() {
         <Header />
         <Grid item className='container_page'>
           <div className='main-content container_shadow'>
-            {/* <Home/> */}
-            {/* <Login /> */}
-            {/* <Auth/> */}
-            <Client/>
-            {/* <RouterProvider router={router} /> */}
+            <Routes>
+              <Route path="/" element={<Layout />} >
+
+                {/* public routes */}
+                <Route path='/' element={<Home />} />
+                <Route path='login' element={<Login />} />
+                <Route path='register' element={<Register/>} />
+
+                {/* protect these routes */}
+                {/* <Route element={<RequireAuth />}> */}
+
+                  <Route path='client' element={<Client />} />
+
+                {/* </Route> */}
+
+              </Route>
+
+
+            </Routes>
+
           </div>
         </Grid>
         <Footer />

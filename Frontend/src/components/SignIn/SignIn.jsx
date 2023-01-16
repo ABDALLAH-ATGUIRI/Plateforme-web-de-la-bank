@@ -1,65 +1,24 @@
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import OpenAccount from '../OpenAccount/OpenAccount';
 import Paper from '@mui/material/Paper';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import React, { useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import Confirmation from '../Confirmation/Confirmation';
-import Validate_password from '../Validate_password/Validate_password';
-
-function Copyright() {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
+import ValidatePassword from '../Validate_password/ValidatePassword';
+import axios from "../../api/axios"
 const steps = ['Formulaire de pré-ouverture de compte ', 'Payment details', 'Review your order'];
-
-function getStepContent(step) {
-    switch (step) {
-        case 0:
-            return <OpenAccount />;
-        case 1:
-            return <Validate_password/>;
-        default:
-            throw new Error('Unknown step');
-    }
-}
-
+const SIGN_IN_URL = "/user/signIn";
 const theme = createTheme();
 
 function SignIn() {
 
-    const [values, setValues] = useState({
-        email: "",
-        password: "",
-        showPass: false
-    })
-
-    const handlePassVisibility = () => {
-        setValues({
-            ...values,
-            showPass: !values.showPass
-        })
-    }
+    const [info, setInfo] = useState({});
 
     const [activeStep, setActiveStep] = useState(0);
-
     const handleNext = () => {
         setActiveStep(activeStep + 1);
     };
@@ -67,6 +26,53 @@ function SignIn() {
     const handleBack = () => {
         setActiveStep(activeStep - 1);
     };
+
+    const createAccount = async (data) => {
+        try {
+            const response = await axios.post(
+                SIGN_IN_URL,
+                JSON.stringify({ data }),
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        withCredentials: true
+                    }
+                })
+
+            console.log(response.data)
+            console.log(response.accessToken)
+            // setSuccess(true)
+
+        } catch (error) {
+            if (!error?.response) {
+                console.error("No server response")
+            } else if (error.response?.status == 400) {
+                console.error("Username Taken")
+            } else {
+                console.error("Registration Failed")
+            }
+        }
+    };
+
+    function getStepContent(step) {
+        switch (step) {
+            case 0:
+                return <OpenAccount
+                    info={info} setUserInfo={(newInfo) => {
+                        setInfo({ ...newInfo });
+                    }} />;
+            case 1:
+                return <ValidatePassword
+                    info={info} setUserInfo={(newInfo) => {
+                        setInfo({ ...newInfo });
+                    }} />;
+            case 3:
+                createAccount(info)
+                break
+            default:
+                throw new Error('Unknown step');
+        }
+    }
 
     return (
         <>
@@ -84,21 +90,25 @@ function SignIn() {
                     ) : (
                         <React.Fragment>
                             {getStepContent(activeStep)}
-                            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                {activeStep !== 0 && (
-                                    <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                                        Back
-                                    </Button>
-                                )}
+                            {
+                                Object.values(info).every(v => v) ? (
+                                    <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                        {activeStep !== 0 && (
+                                            <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                                                Back
+                                            </Button>
+                                        )}
 
-                                <Button
-                                    variant="contained"
-                                    onClick={handleNext}
-                                    sx={{ mt: 3, ml: 1 }}
-                                >
-                                    {activeStep === steps.length - 1 ? 'Valider' : 'Suivante'}
-                                </Button>
-                            </Box>
+                                        <Button
+                                            variant="contained"
+                                            onClick={handleNext}
+                                            sx={{ mt: 3, ml: 1 }}
+                                        >
+                                            {activeStep === steps.length ? 'Valider' : 'Suivante'}
+                                        </Button>
+                                    </Box>
+                                ) : null
+                            }
                         </React.Fragment>
                     )}
                 </Paper>

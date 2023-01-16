@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, Typography } from '@mui/material'
 import CustomButton from '../Button/Button'
+import { Link } from 'react-router-dom'
 import "./Intro.css"
 // import Background from "../../assets/backgroud/slider.jpg"
 
@@ -14,8 +15,13 @@ function Intro() {
                             Devenir client CRÉDIT DU MAROC en toute simplicité.
                         </h2>
                     </Grid>
-                    <Grid item xs={12} >
-                        <CustomButton text={"OUVRIR MON COMPE"} icon={""} />
+                    <Grid item xs={12} style={{ display: "flex", gap: "20px" }} >
+                        <Link to="login">
+                            <CustomButton text={"OUVRIR MON COMPTE"} icon={""} />
+                        </Link>
+                        <Link to="register">
+                            <CustomButton text={"CRÈER MON COMPTE"} icon={""} />
+                        </Link>
                     </Grid>
                 </Grid>
 

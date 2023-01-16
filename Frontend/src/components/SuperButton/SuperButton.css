@@ -15,14 +15,14 @@
     margin: 30px;
   }
   
-  button:hover {
+  .button:hover {
     color: #ffffff;
     transform: scale(1.1);
     outline: 2px solid #70bdca;
     box-shadow: 4px 5px 17px -4px #268391;
   }
   
-  button::before {
+  .button::before {
     content: "";
     position: absolute;
     left: -50px;
@@ -35,7 +35,7 @@
     transition: width 1000ms;
   }
   
-  button:hover::before {
+  .button:hover::before {
     width: 250%;
   }
   

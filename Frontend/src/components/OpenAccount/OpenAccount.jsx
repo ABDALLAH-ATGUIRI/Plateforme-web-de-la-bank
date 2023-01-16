@@ -1,15 +1,21 @@
-import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Checkbox from '@mui/material/Checkbox';
+import { useEffect, useState } from 'react';
 
-export default function OpenAccount() {
-    const [value, setValue] = React.useState(new Date().toLocaleDateString());
-
-
+export default function OpenAccount({ info , setUserInfo }) {
+    const [values, setValues] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        birth: new Date().toLocaleDateString(),
+        cin: "",
+        phone: "",
+        accept: false
+    })
+    useEffect(() => { setUserInfo(values) }, [values])
     return (
         <>
             <Grid container direction="column" spacing={2}>
@@ -29,6 +35,13 @@ export default function OpenAccount() {
                         fullWidth
                         autoComplete="given-name"
                         variant="outlined"
+                        onChange={(newValue) => {
+                            setValues({
+                                ...values,
+                                firstName: newValue.target.value
+                            })
+                        }}
+                        value={info.firstName}
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -42,35 +55,54 @@ export default function OpenAccount() {
                         fullWidth
                         autoComplete="family-name"
                         variant="outlined"
+                        onChange={(newValue) => {
+                            setValues({
+                                ...values,
+                                lastName: newValue.target.value
+                            })
+                        }}
+                        value={info.lastName}
                     />
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
                         required
-                        id="e-mail"
-                        name="e-mail"
+                        id="email"
+                        name="email"
                         label="Email"
                         placeholder="Inscrivez votre e-mail"
                         fullWidth
                         autoComplete="shipping address-line1"
                         variant="outlined"
+                        onChange={(newValue) => {
+                            setValues({
+                                ...values,
+                                email: newValue.target.value
+                            })
+                        }}
+                        value={info.email}
+
                     />
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
                         required
-                        id="Date"
+                        id="birth"
                         type="date"
-                        name="Date"
+                        name="birth"
                         label="Date de naissance"
                         placeholder=""
                         fullWidth
-                        autoComplete="shipping address-line2"
+                        autoComplete="date of birth"
                         variant="outlined"
-                        // value={value}
                         onChange={(newValue) => {
-                            setValue(newValue.timeStamp);
+                            setValues({
+                                ...values,
+                                birth: newValue.target.value
+                            })
                         }}
+                        value={info.birth}
+
                     />
                 </Grid>
 
@@ -84,17 +116,33 @@ export default function OpenAccount() {
                         fullWidth
                         autoComplete="shipping address-level2"
                         variant="outlined"
+                        onChange={(newValue) => {
+                            setValues({
+                                ...values,
+                                cin: newValue.target.value
+                            })
+                        }}
+                        value={info.cin}
+
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
                         required
-                        id="numero"
-                        name="numero"
+                        id="phone"
+                        name="phone"
                         label="Numéro de téléphone"
                         fullWidth
                         autoComplete="Telephone number"
                         variant="outlined"
+                        onChange={(newValue) => {
+                            setValues({
+                                ...values,
+                                phone: newValue.target.value
+                            })
+                        }}
+                        value={info.phone}
+
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -102,6 +150,14 @@ export default function OpenAccount() {
                         required
                         control={<Checkbox color="error" name="saveAddress" value="yes" />}
                         label="J’ai lu et j’accepte les mentions légales, notamment la mention relative à la protection des données personnelles."
+                        onChange={() => {
+                            setValues({
+                                ...values,
+                                accept: !values.accept
+                            })
+                        }}
+                        checked={info.accept}
+
                     />
                 </Grid>
             </Grid>

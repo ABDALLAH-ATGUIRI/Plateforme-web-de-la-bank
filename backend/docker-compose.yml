@@ -14,7 +14,7 @@ services:
       - "3000:3000"
     environment:
       PORT: 3000
-      MONGODB_URI: mongodb://mongo_db:27017
+      MONGODB_URI: mongodb://mongo_db:27017/Bank
       BD_NAME: Bank
       NAME: mongo_db
     depends_on:

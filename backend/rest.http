@@ -8,17 +8,19 @@ POST localhost:3000/api/users/signIn
 Content-Type: application/json
 
 {
-    "firstName":"Abdallah",
-    "lastName":"ATGUIRI",
-    "phone":"06237792709",
-    "email":"abdo@gmail.com",
-    "password":"open=&Sesame"
+    "firstName": "Abdallah",
+    "lastName": "ATGUIRI",
+    "birth": "2001-03-01",
+    "cin": "jb560120",
+    "phone": "06237792709",
+    "email": "abdr@gmail.com",
+    "password": "open=&Sesame",
+    "role": "user"
 }
 
 ###> Login in your acconte
 POST http://localhost:3000/api/users/login
 Content-Type: application/json
-
 {
     "email":"abdo@gmail.com",
     "password":"open=&Sesame"

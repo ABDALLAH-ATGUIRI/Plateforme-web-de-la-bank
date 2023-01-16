@@ -4,9 +4,11 @@ const jsonwebtoken = require("jsonwebtoken");
 const { sign } = jsonwebtoken;
 module.exports = {
   createUser: (req, res) => {
-    console.log(req);
     const body = req.body;
     const salt = genSaltSync(10);
+
+    console.log(req.body);
+
     userServes.list(body.email).then((user, error) => {
       if (user) {
         return res.json({

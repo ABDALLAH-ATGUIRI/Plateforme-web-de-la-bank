@@ -1,4 +1,4 @@
-const mongoose = require("mongoose") ;
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 const usersSchema = new Schema(
@@ -8,6 +8,14 @@ const usersSchema = new Schema(
       required: true
     },
     lastName: {
+      type: String,
+      required: true
+    },
+    birth: {
+      type: Date,
+      required: true
+    },
+    cin: {
       type: String,
       required: true
     },
@@ -22,6 +30,16 @@ const usersSchema = new Schema(
     },
     password: {
       type: String,
+      required: true
+    },
+    accept: {
+      type: String,
+      required: true
+    },
+    role: {
+      type: String,
+      enum: ["admin", "user"],
+      default: "user",
       required: true
     }
   },

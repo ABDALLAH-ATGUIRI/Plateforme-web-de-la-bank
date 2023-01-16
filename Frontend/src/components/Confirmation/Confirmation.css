@@ -1,0 +1,19 @@
+.title_confirmation_card {
+    font-size: 24px;
+    position: relative;
+    color: var(--main-color);
+    font-weight: bolder;
+    margin: 0;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.description_confirmation_card {
+    /* padding: 0 0 16px 16px; */
+    font-size: 1em;
+    font-weight: 600;
+    color: rgb(110, 113, 145);
+    letter-spacing: 0.25px;
+    margin-top: 4px;
+    width: 90%;
+}

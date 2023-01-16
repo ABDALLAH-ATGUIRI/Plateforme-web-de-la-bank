@@ -5,6 +5,7 @@ import { Grid, Container, Paper, TextField, Button, IconButton, InputAdornment }
 import Footer from './components/Footer/Footer';
 import Home from "./pages/Home/Home"
 import Auth from './pages/Auth/Auth';
+import Client from './pages/Client/Client';
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
         <Grid item className='container_page'>
           <div className='main-content container_shadow'>
             {/* <Home/> */}
-            <Auth/>
+            {/* <Login /> */}
+            {/* <Auth/> */}
+            <Client/>
             {/* <RouterProvider router={router} /> */}
           </div>
         </Grid>

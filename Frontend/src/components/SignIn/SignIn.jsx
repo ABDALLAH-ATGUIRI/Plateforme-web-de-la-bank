@@ -12,6 +12,8 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import React, { useState } from 'react'
+import Confirmation from '../Confirmation/Confirmation';
+import Validate_password from '../Validate_password/Validate_password';
 
 function Copyright() {
     return (
@@ -31,11 +33,9 @@ const steps = ['Formulaire de pré-ouverture de compte ', 'Payment details', 'Re
 function getStepContent(step) {
     switch (step) {
         case 0:
-            return <OpenAccount/>;
+            return <OpenAccount />;
         case 1:
-            return <></>;
-        case 2:
-            return <></>;
+            return <Validate_password/>;
         default:
             throw new Error('Unknown step');
     }
@@ -71,7 +71,7 @@ function SignIn() {
     return (
         <>
             <ThemeProvider theme={theme}>
-                <Paper elevation={2} sx={{ padding: 5, position: "absolute", zIndex: 100, width: "60%", height: "auto", marginLeft: "100px", borderRadius: "20px" }} className="card_login">
+                <Paper elevation={2} sx={{ padding: 5, position: "absolute", zIndex: 100, width: "80%", marginLeft: "100px", borderRadius: "20px" }} className="card_login">
                     <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
                         {steps.map((label) => (
                             <Step key={label} >
@@ -79,17 +79,8 @@ function SignIn() {
                             </Step>
                         ))}
                     </Stepper>
-                    {activeStep === steps.length ? (
-                        <React.Fragment>
-                            <Typography variant="h5" gutterBottom>
-                                Thank you for your order.
-                            </Typography>
-                            <Typography variant="subtitle1">
-                                Your order number is #2001539. We have emailed your order
-                                confirmation, and will send you an update when your order has
-                                shipped.
-                            </Typography>
-                        </React.Fragment>
+                    {activeStep === steps.length - 1 ? (
+                        <Confirmation />
                     ) : (
                         <React.Fragment>
                             {getStepContent(activeStep)}
@@ -105,7 +96,7 @@ function SignIn() {
                                     onClick={handleNext}
                                     sx={{ mt: 3, ml: 1 }}
                                 >
-                                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                                    {activeStep === steps.length - 1 ? 'Valider' : 'Suivante'}
                                 </Button>
                             </Box>
                         </React.Fragment>

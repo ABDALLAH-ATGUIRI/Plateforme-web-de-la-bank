@@ -11,7 +11,7 @@ export default function OpenAccount() {
 
 
     return (
-        <React.Fragment>
+        <>
             <Grid container direction="column" spacing={2}>
                 <Typography gutterBottom variant="h5" component="h1" className='title_card_login'>
                     Formulaire de pré-ouverture de compte  <span>MyCDM,</span> </Typography>
@@ -105,6 +105,6 @@ export default function OpenAccount() {
                     />
                 </Grid>
             </Grid>
-        </React.Fragment>
+        </>
     );
 }

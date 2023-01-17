@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const AccountController = require("./account.controller");
-const auth = require("../../../middleware/adminTokenMiddlware.js");
+const auth = require("../../middleware/userTokenMiddlware");
 
 router.get(`/`, auth.checkToken, AccountController.GetAllAccounts);
 router.post(`/create`, auth.checkToken, AccountController.CreateAcc);

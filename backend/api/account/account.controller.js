@@ -1,4 +1,4 @@
-const AccountServes = require("./account.service");
+const AccountService = require("./account.service");
 const { genSaltSync, hashSync, compareSync } = require("bcrypt");
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
         message: "Veuillez remplir tous les champs obligatoires"
       });
     }
-    const AccExist = await AccountServes.findOne({ user: user });
+    const AccExist = await AccountService.findOne({ user: user });
     if (AccExist) {
       res.status(400);
       throw new Error("Vous avez deja cree un compte");
@@ -19,7 +19,7 @@ module.exports = {
     const salt = genSaltSync(10);
     const hashPassword = hashSync(password, salt);
 
-    const account = await AccountServes.create({
+    const account = await AccountService.create({
       user,
       reference,
       password: hashPassword,
@@ -33,7 +33,7 @@ module.exports = {
 
   SignToAcc: async (req, res) => {
     const { reference, password } = req.body;
-    const myAcc = await AccountServes.list({ reference });
+    const myAcc = await AccountService.list({ reference });
     if (myAcc && (await compareSync(password, myAcc.password))) {
       res.json({
         id: myAcc.id,
@@ -51,13 +51,13 @@ module.exports = {
 
   PullMoney: async (req, res) => {
     const { id_acc, balance_pulled, operationDate } = req.body;
-    const account = await AccountServes.findById(id_acc);
+    const account = await AccountService.findById(id_acc);
     if (!account) {
       res.status(400);
       throw new Error("Compte non trouve");
     }
     if (account.balance >= balance_pulled) {
-      const newOperation = await AccountServes.findByIdAndUpdate(id_acc, {
+      const newOperation = await AccountService.findByIdAndUpdate(id_acc, {
         $set: { balance: account.balance - balance_pulled }
       });
       if (newOperation) {
@@ -78,7 +78,7 @@ module.exports = {
       balance,
       operationDate
     };
-    const operation = await AccountServes.findByIdAndUpdate(id_acc, {
+    const operation = await AccountService.findByIdAndUpdate(id_acc, {
       $push: { history: history }
     });
     if (!operation) {
@@ -87,7 +87,7 @@ module.exports = {
   },
 
   GetAllAccounts: async (req, res) => {
-    const Accounts = await AccountServes.find();
+    const Accounts = await AccountService.find();
     if (!Accounts) {
       throw new Error("no data available");
     }
@@ -99,7 +99,7 @@ module.exports = {
 
   GetMyAccount: async (req, res) => {
     const { id } = req.body;
-    const account = await AccountServes.findOne({ user: id });
+    const account = await AccountService.findOne({ user: id });
     if (!account) {
       res.json({
         message: `Vous n'avez pas encore créé votre compte`,
@@ -114,5 +114,7 @@ module.exports = {
         history: account.history
       });
     }
-  }
+  },
+
+  
 };
